@@ -21,13 +21,17 @@ defmodule Core.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: applications(Mix.env),
       mod: {Core.Application, []}
     ]
   end
 
+  defp applications(:dev), do: applications(:all) ++ [:logger]
+  defp applications(:test), do: applications(:all) ++ [:logger, :faker]
+  defp applications(_all), do: [:logger]
+
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   defp deps do
     [
@@ -35,14 +39,17 @@ defmodule Core.MixProject do
       {:ecto_logger_json, git: "https://github.com/edenlabllc/ecto_logger_json.git", branch: "query_params"},
       {:ecto_sql, "~> 3.6"},
       {:ex_machina, "~> 2.7", only: [:dev, :test]},
-      {:excoveralls, "~> 0.14.2", only: :test},
+      {:ex_unit_notifier, "~> 1.2", only: [:test]},
+      {:excoveralls, "~> 0.14", only: :test},
+      {:faker, "~> 0.16", only: [:benchmark, :dev, :test]},
+      {:flake_id, "~> 0.1"},
       {:httpoison, "~> 1.8"},
       {:jason, "~> 1.2"},
       {:mox, "~> 1.0", only: :test},
       {:phoenix_ecto, "~> 4.3"},
       {:plug, "~> 1.12"},
       {:poison, "~> 5.0"},
-      {:postgrex, "~> 0.15.9"},
+      {:postgrex, "~> 0.15"},
       {:scrivener_ecto, "~> 2.7"},
       {:timex, "~> 3.1"}
     ]
@@ -50,9 +57,10 @@ defmodule Core.MixProject do
 
   defp aliases do
     [
+      setup: ["ecto.reset"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
     ]
   end
 end
