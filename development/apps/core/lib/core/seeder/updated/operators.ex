@@ -4,6 +4,7 @@ defmodule Core.Seeder.Updated.Operators do
   """
 
   alias Core.{
+    OperatorTypes,
     Operators,
     Repo
   }
@@ -25,11 +26,19 @@ defmodule Core.Seeder.Updated.Operators do
       Enum.at(operator_ids, 2)
     }
 
+    operator_type_ids = Enum.map(Repo.all(OperatorTypes), &(&1.id))
+    {opt_type1, opt_type2, opt_type3} = {
+      Enum.at(operator_type_ids, 0),
+      Enum.at(operator_type_ids, 1),
+      Enum.at(operator_type_ids, 2)
+    }
+
     changeset1 = Changeset.change(opt1, %{
       active: random_boolean(),
       config: Map.new,
       limit: random_integer(),
       name: Lorem.sentence(),
+      operator_type_id: opt_type2,
       price: random_integer(),
       priority: random_integer(),
       protocol_name: Lorem.word()
@@ -40,6 +49,7 @@ defmodule Core.Seeder.Updated.Operators do
       config: Map.new,
       limit: random_integer(),
       name: Lorem.sentence(),
+      operator_type_id: opt_type1,
       price: random_integer(),
       priority: random_integer(),
       protocol_name: Lorem.word()
@@ -50,6 +60,7 @@ defmodule Core.Seeder.Updated.Operators do
       config: Map.new,
       limit: random_integer(),
       name: Lorem.sentence(),
+      operator_type_id: opt_type3,
       price: random_integer(),
       priority: random_integer(),
       protocol_name: Lorem.word()

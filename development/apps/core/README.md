@@ -4,6 +4,7 @@
 
 ```
 bash> mix new core --sup
+bash> mix run priv/repo/seeds.exs
 ```
 
 ### 27 July 2021 by Oleg G.Kapranov
