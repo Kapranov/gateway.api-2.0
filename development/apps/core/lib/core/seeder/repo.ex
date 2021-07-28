@@ -3,6 +3,14 @@ defmodule Core.Seeder.Repo do
   Seeds for `Core.Seeder.Repo` repository.
   """
 
+  alias Core.Seeder.{
+    Contacts,
+    Deleted,
+    OperatorTypes,
+    Operators,
+    Updated
+  }
+
   @spec seed!() :: :ok
   def seed! do
     OperatorTypes.seed!()
