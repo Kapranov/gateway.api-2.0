@@ -39,7 +39,7 @@ defmodule Core.OperatorsRequests do
 
   def list_operators() do
     OperatorsSchema
-    |> join(:inner, [op], opt in assoc(op, :operator_type))
+    |> join(:inner, [op], opt in assoc(op, :operator_types))
     |> where([op, opt],  opt.id == op.operator_type_id)
     |> select([op, opt],%{operator: op, operator_type: opt})
     |> Repo.all()
