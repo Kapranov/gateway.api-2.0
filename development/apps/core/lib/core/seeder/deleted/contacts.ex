@@ -13,7 +13,7 @@ defmodule Core.Seeder.Deleted.Contacts do
 
   @spec deleted_contacts() :: Ecto.Schema.t()
   defp deleted_contacts do
-    IO.puts("Deleting data on model's Contacts\n")
-    SQL.query!(Repo, "TRUNCATE contacts CASCADE;")
+    # IO.puts("Deleting data on model's Contacts\n")
+    # SQL.query!(Repo, "TRUNCATE contacts CASCADE;")
   end
 end
