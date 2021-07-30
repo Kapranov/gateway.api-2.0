@@ -15,6 +15,13 @@ defmodule Core.Contacts do
     viber_id: String.t()
   }
 
+  @type contacts_map :: %{
+    id: String.t(),
+    phone_number: String.t(),
+    viber_id:  String.t(),
+    operator_id: String.t()
+  }
+
   @allowed_params ~w(
     operator_id
     phone_number
