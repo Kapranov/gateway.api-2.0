@@ -18,5 +18,20 @@ else
     port: "${DB_PORT}",
     timeout: 15_000,
     username: "${DB_USER}"
+
+  config :msg_router, MsgRouter.RedisManager,
+    database: "${REDIS_NAME}",
+    password: System.get_env("REDIS_PASSWORD"),
+    host: "${REDIS_HOST}",
+    port: "${REDIS_PORT}",
+    pool_size: "${REDIS_POOL_SIZE}"
+
+  config :msg_router,  MsgRouter.MqManager,
+    mq_modul: MsgGateway.MqManager,
+    mq_host:  "${MQ_HOST}",
+    mq_port:  "${MQ_PORT}",
+    resend_timeout: "{$MQ_RESEND_TIMEOUT}",
+    mq_queue:  "${MQ_QUEUE}",
+    mq_exchange: "${MQ_EXCHANGE}"
   """)
 end
