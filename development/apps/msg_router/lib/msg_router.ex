@@ -1,5 +1,6 @@
 defmodule MsgRouter do
   @moduledoc false
+
   alias MsgRouter.RedisManager
 
   @messages_gateway_conf "system_config"
