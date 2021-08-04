@@ -341,6 +341,7 @@ defmodule MsgRouterTest do
   end
 
   test "test_redis" do
+    MsgRouter.Application.start(nil,nil)
     MsgRouter.RedisManager.set("test", "test")
     assert "test" = MsgRouter.RedisManager.get("test")
     MsgRouter.RedisManager.del("test")

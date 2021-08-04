@@ -8,12 +8,9 @@ defmodule MsgRouter do
   @sms_protocol "sms_protocol"
 
   @error_send_status "sending_error"
-  @read_status "read"
-  @delivered_status "delivered"
   @in_queue_status "in_queue"
   @in_process_status "sending"
 
-  @end_status [ @read_status, @delivered_status, @error_send_status]
   @pending_status [@in_queue_status, @in_process_status]
 
   @spec send_message(map()) :: :ok | {:error, binary()}

@@ -5,9 +5,9 @@ defmodule MsgRouter.MqManager do
   @name __MODULE__
   @reconnect_timeout 5000
 
-  @spec start_link() :: {:ok, pid()} | :ignore | {:error, {:already_started, pid()} | term()}
-  def start_link do
-    GenServer.start_link(@name, [], name: @name)
+  @spec start_link(list()) :: {:ok, pid()} | :ignore | {:error, {:already_started, pid()} | term()}
+  def start_link(opts \\ []) do
+    GenServer.start_link(@name, opts, name: @name)
   end
 
   @spec init(term()) :: {:ok, any()} | {:ok, any(), :infinity | non_neg_integer() | :hibernate |
