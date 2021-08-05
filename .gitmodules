@@ -1,0 +1,3 @@
+[submodule "development/apps/msg_gateway/src/plug_logger_json"]
+	path = development/apps/msg_gateway/src/plug_logger_json
+	url = https://github.com/bleacherreport/plug_logger_json
