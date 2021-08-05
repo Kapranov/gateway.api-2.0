@@ -31,5 +31,7 @@ else
     pool_size: "5"
 
   config :mg_logger, elasticsearch_url: "http://127.0.0.1:9200"
+  config :logger, handle_otp_reports: false
+  config :lager, error_logger_redirect: false, handlers: [level: :critical]
   """)
 end

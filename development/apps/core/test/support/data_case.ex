@@ -14,7 +14,7 @@ defmodule Core.DataCase do
 
   use ExUnit.CaseTemplate
 
-  alias Core.{Config, Repo}
+  alias Core.Repo
   alias Ecto.Adapters.SQL.Sandbox, as: Adapter
   alias Ecto.Changeset
 

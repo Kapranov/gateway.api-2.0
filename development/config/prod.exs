@@ -35,5 +35,7 @@ else
     mq_exchange: "${MQ_EXCHANGE}"
 
   config :mg_logger, elasticsearch_url: "http://192.168.100.165:9200"
+  config :logger, handle_otp_reports: false
+  config :lager, error_logger_redirect: false, handlers: [level: :critical]
   """)
 end
