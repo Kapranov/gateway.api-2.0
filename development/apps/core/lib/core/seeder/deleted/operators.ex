@@ -3,8 +3,8 @@ defmodule Core.Seeder.Deleted.Operators do
   Deleted are seeds whole an operators.
   """
 
-  alias Core.Repo
-  alias Ecto.Adapters.SQL
+  # alias Core.Repo
+  # alias Ecto.Adapters.SQL
 
   @spec start!() :: Ecto.Schema.t()
   def start! do

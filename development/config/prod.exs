@@ -33,5 +33,7 @@ else
     resend_timeout: "{$MQ_RESEND_TIMEOUT}",
     mq_queue:  "${MQ_QUEUE}",
     mq_exchange: "${MQ_EXCHANGE}"
+
+  config :mg_logger, elasticsearch_url: "http://192.168.100.165:9200"
   """)
 end

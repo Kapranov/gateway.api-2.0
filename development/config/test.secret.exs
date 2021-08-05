@@ -21,3 +21,5 @@ config :msg_router, MsgRouter.RedisManager,
        password: nil,
        port: "6379",
        pool_size: "5"
+
+config :mg_logger, elasticsearch_url: "http://127.0.0.1:9200"

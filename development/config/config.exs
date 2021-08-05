@@ -21,8 +21,8 @@ config :logger, :console,
     error: :red
   ]
 
-# config :phoenix, :json_library, Jason
-
 config :core, ecto_repos: [Core.Repo]
+
+config :mg_logger, elasticsearch_url: "http://192.168.100.165:9200"
 
 import_config "#{Mix.env}.exs"
