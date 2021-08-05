@@ -27,7 +27,7 @@ config :msg_router, MsgRouter.RedisManager,
        pool_size: "5"
 
 config :msg_gateway, MsgGatewayWeb.Endpoint,
-  http: [port: 4011],
+  http: [port: 4000],
   debug_errors: false,
   code_reloader: true,
   check_origin: false,
