@@ -12,6 +12,8 @@ else
   config :mg_logger, elasticsearch_url: "http://127.0.0.1:9200"
   config :logger, handle_otp_reports: false
   config :lager, error_logger_redirect: false, handlers: [level: :critical]
+  config :phoenix, :stacktrace_depth, 20
+  config :phoenix, :plug_init_mode, :runtime
 
   config :core, Core.Repo,
     database: "your_name_db",
@@ -35,10 +37,10 @@ else
     pool_size: "5"
 
   config :msg_gateway, MsgGatewayWeb.Endpoint,
-    http: [port: 4011],
-    debug_errors: false,
-    code_reloader: true,
     check_origin: false,
+    code_reloader: true,
+    debug_errors: true,
+    http: [port: 4000],
     render_errors: [view: EView.Views.PhoenixError, accepts: ~w(json)],
     watchers: []
 

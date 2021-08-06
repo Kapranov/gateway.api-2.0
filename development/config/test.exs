@@ -14,20 +14,18 @@ else
   config :lager, error_logger_redirect: false, handlers: [level: :critical]
 
   config :core, Core.Repo,
-    database: "your_name_db",
-    hostname: "your_hostname",
-    password: "your_password",
     pool: Ecto.Adapters.SQL.Sandbox,
     pool_size: 10,
     username: "your_login"
 
   config :core, Core.Repo,
-    username: "your_name_db",
-    password: "your_password",
     database: "your_name_db",
     hostname: "your_hostname",
+    password: "your_password",
+    pool: Ecto.Adapters.SQL.Sandbox,
+    pool_size: 10,
     show_sensitive_data_on_connection_error: true,
-    pool: Ecto.Adapters.SQL.Sandbox
+    username: "your_login"
 
   config :msg_router, MsgRouter.MqManager,
     mq_modul: MqManagerTest,

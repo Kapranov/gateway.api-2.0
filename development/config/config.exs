@@ -29,4 +29,11 @@ config :phoenix, :json_library, Jason
 
 config :phoenix, :stacktrace_depth, 20
 
+config :msg_gateway, MsgGatewayWeb.Endpoint,
+  live_view: [signing_salt: "oKPm0T0O"],
+  pubsub_server: MsgGateway.PubSub,
+  render_errors: [view: MsgGatewayWeb.ErrorView, accepts: ~w(json), layout: false],
+  secret_key_base: "kVsMUVZz6MVY1KXmvFfBk2cNePw4rVPgn/6XaLQbwbaCodjPuY+75JYWjjnk/HVl",
+  url: [host: "localhost"]
+
 import_config "#{Mix.env}.exs"

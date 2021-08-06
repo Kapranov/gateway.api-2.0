@@ -9,8 +9,15 @@ else
   File.write(file_path, """
   use Mix.Config
 
+  secret_key_base =
+    System.get_env("SECRET_KEY_BASE") ||
+      raise """
+      environment variable SECRET_KEY_BASE is missing.
+      You can generate one by calling: mix phx.gen.secret
+      """
+
   config :mg_logger, elasticsearch_url: "http://192.168.100.165:9200"
-  config :logger, handle_otp_reports: false
+  config :logger, handle_otp_reports: false, level: :info
   config :lager, error_logger_redirect: false, handlers: [level: :critical]
 
   config :core, Core.Repo,
@@ -40,13 +47,18 @@ else
 
   config :msg_gateway, MsgGatewayWeb.Endpoint,
     load_from_system_env: true,
-    http: [:inet6, port: System.get_env("PORT")],
+    http: [
+      port: String.to_integer(System.get_env("PORT") || "4000"),
+      transport_options: [socket_opts: [:inet6]]
+    ],
+    secret_key_base: secret_key_base, 
     url: [
       host: {:system, "HOST", "localhost"},
       port: {:system, "PORT", "80"}
     ],
     debug_errors: false,
     code_reloader: false,
+    cache_static_manifest: "priv/static/cache_manifest.json",
     server: true,
     root: "."
 
