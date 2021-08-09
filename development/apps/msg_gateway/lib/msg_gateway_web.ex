@@ -22,6 +22,8 @@ defmodule MsgGatewayWeb do
       use Phoenix.Controller, namespace: MsgGatewayWeb
 
       import Plug.Conn
+      import MsgGatewayWeb.Proxy
+      import MsgGateway.Plugs.Headers
       alias MsgGatewayWeb.Router.Helpers, as: Routes
     end
   end
@@ -29,7 +31,8 @@ defmodule MsgGatewayWeb do
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/msg_gateway_web/templates",
+        root: "",
+        # root: "lib/msg_gateway_web/templates",
         namespace: MsgGatewayWeb
 
       import Phoenix.Controller,
@@ -45,6 +48,15 @@ defmodule MsgGatewayWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import MsgGateway.Plugs.Headers
+    end
+  end
+
+  def plugs do
+    quote do
+      import MsgGatewayWeb.Proxy
+      import Plug.Conn, only: [put_status: 2, halt: 1, get_req_header: 2, assign: 3]
+      import Phoenix.Controller, only: [render: 2, render: 3, put_view: 2]
     end
   end
 

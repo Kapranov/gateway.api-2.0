@@ -14,7 +14,7 @@ defmodule MsgGateway.Application do
     database = config[:database]
     port = config[:port]
     pool_size =  String.to_integer(config[:pool_size])
-    {:ok, app_name} = :application.get_application(__MODULE__)
+    {:ok, app_name} = :application.get_application(@name)
 
     children_redix =
       for i <- 0..(pool_size - 1) do

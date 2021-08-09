@@ -2,7 +2,7 @@ use Mix.Config
 
 config :mg_logger, elasticsearch_url: "http://127.0.0.1:9200"
 
-# config :logger, handle_otp_reports: false
+config :logger, handle_otp_reports: false, level: :warning
 config :lager, error_logger_redirect: false, handlers: [level: :critical]
 
 config :phoenix, :stacktrace_depth, 20
