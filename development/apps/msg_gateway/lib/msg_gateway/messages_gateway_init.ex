@@ -31,17 +31,17 @@ defmodule MsgGatewayInit do
 
   @type priority_list() :: [priority_type()]
 
-  @spec start_link() :: result when
+  @spec start_link(list()) :: result when
           result: {:ok, pid()} |
                   :ignore |
                   {:error, {:already_started, pid()} |
                   {:shutdown, term()} |
                   term()}
-  def start_link(), do: GenServer.start_link(@name, [], name: @name)
+  def start_link(opts \\ []) do
+    GenServer.start_link(@name, opts, name: @name)
+  end
 
-  @spec init(opts) :: result when
-          opts: term(),
-          result: {:ok, []}
+  @spec init(opts) :: result when opts: term(), result: {:ok, []}
   def init(_opts) do
     RedisManager.get(@messages_gateway_conf)
     |> check_and_set_system_config()

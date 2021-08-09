@@ -3,6 +3,8 @@ defmodule MsgRouter.Application do
 
   use Application
 
+  @name __MODULE__
+
   @spec start(:normal | {:takeover, atom()} | {:failover, atom()}, start_args :: term()) ::
           {:ok, pid()} | {:ok, pid(), term()} | {:error, reason :: term()}
   def start(_type, _args) do
@@ -12,7 +14,7 @@ defmodule MsgRouter.Application do
     database = config[:database]
     port = config[:port]
     pool_size =  String.to_integer(config[:pool_size])
-    {:ok, app_name} = :application.get_application(__MODULE__)
+    {:ok, app_name} = :application.get_application(@name)
 
     children_redix =
       for i <- 0..(pool_size - 1) do
