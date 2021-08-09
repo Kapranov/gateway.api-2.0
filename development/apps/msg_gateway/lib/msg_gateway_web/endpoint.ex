@@ -1,6 +1,10 @@
 defmodule MsgGatewayWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :msg_gateway
 
+  if Application.get_env(:msg_gateway, :sql_sandbox) do
+    plug(Phoenix.Ecto.SQL.Sandbox)
+  end
+
   @session_options [
     store: :cookie,
     key: "_msg_gateway_key",
@@ -22,11 +26,14 @@ defmodule MsgGatewayWeb.Endpoint do
   end
 
   plug Plug.RequestId
+  plug EView.Plugs.Idempotency
+  plug Plug.LoggerJSON, level: Logger.level()
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
+  plug EView
 
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
-    pass: ["*/*"],
+    pass: ["application/json"],
     json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride

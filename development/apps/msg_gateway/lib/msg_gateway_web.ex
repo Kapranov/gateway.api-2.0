@@ -22,8 +22,8 @@ defmodule MsgGatewayWeb do
       use Phoenix.Controller, namespace: MsgGatewayWeb
 
       import Plug.Conn
-      import MsgGatewayWeb.Proxy
       import MsgGateway.Plugs.Headers
+      alias MsgGatewayWeb.Proxy
       alias MsgGatewayWeb.Router.Helpers, as: Routes
     end
   end
