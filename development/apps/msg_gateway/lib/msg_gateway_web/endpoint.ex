@@ -1,4 +1,6 @@
 defmodule MsgGatewayWeb.Endpoint do
+  @moduledoc false
+
   use Phoenix.Endpoint, otp_app: :msg_gateway
 
   if Application.get_env(:msg_gateway, :sql_sandbox) do

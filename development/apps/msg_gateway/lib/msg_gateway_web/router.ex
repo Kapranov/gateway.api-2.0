@@ -1,4 +1,6 @@
 defmodule MsgGatewayWeb.Router do
+  @moduledoc false
+
   use MsgGatewayWeb, :router
 
   pipeline :api do
