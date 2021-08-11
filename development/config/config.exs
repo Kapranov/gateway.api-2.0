@@ -30,10 +30,10 @@ config :phoenix, :json_library, Jason
 config :phoenix, :stacktrace_depth, 20
 
 config :msg_gateway, MsgGatewayWeb.Endpoint,
-  live_view: [signing_salt: "oKPm0T0O"],
-  pubsub_server: MsgGateway.PubSub,
+  url: [host: "localhost"],
+  secret_key_base: "ibE/3gD/j0J/EZdCOb6jVPnTZyuntCEpFuwN6BHP+4VB/nRJ7L4rVJV4N2mwuCf0",
   render_errors: [view: MsgGatewayWeb.ErrorView, accepts: ~w(json), layout: false],
-  secret_key_base: "kVsMUVZz6MVY1KXmvFfBk2cNePw4rVPgn/6XaLQbwbaCodjPuY+75JYWjjnk/HVl",
-  url: [host: "localhost"]
+  pubsub_server: MsgGateway.PubSub,
+  live_view: [signing_salt: "e56nxDnq"]
 
 import_config "#{Mix.env}.exs"

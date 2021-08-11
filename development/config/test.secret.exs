@@ -38,10 +38,10 @@ config :msg_gateway, MsgGateway.MqManager,
   mq_exchange: "message_exchange"
 
 config :msg_gateway, MsgGateway.RedisManager,
-  host: "127.0.0.1",
+  host: "0.0.0.0",
   database: "2",
   password: nil,
-  port: "6379",
+  port: 6379,
   pool_size: "5"
 
 config :logger, level: :warn

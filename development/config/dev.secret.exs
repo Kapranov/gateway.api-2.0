@@ -2,7 +2,7 @@ use Mix.Config
 
 config :mg_logger, elasticsearch_url: "http://127.0.0.1:9200"
 
-config :logger, handle_otp_reports: false, level: :info
+config :logger, handle_otp_reports: false, level: :warn
 config :lager, error_logger_redirect: false, handlers: [level: :critical]
 
 config :phoenix, :stacktrace_depth, 20
@@ -30,12 +30,19 @@ config :msg_router, MsgRouter.RedisManager,
   port: "6379",
   pool_size: "5"
 
+#config :msg_gateway, MsgGatewayWeb.Endpoint,
+#  check_origin: false,
+#  code_reloader: true,
+#  debug_errors: true,
+#  http: [port: 4000],
+#  render_errors: [view: EView.Views.PhoenixError, accepts: ~w(json)],
+#  watchers: []
+
 config :msg_gateway, MsgGatewayWeb.Endpoint,
-  check_origin: false,
-  code_reloader: true,
-  debug_errors: true,
   http: [port: 4000],
-  render_errors: [view: EView.Views.PhoenixError, accepts: ~w(json)],
+  debug_errors: true,
+  code_reloader: true,
+  check_origin: false,
   watchers: []
 
 config :msg_gateway, MsgGateway.MqManager,

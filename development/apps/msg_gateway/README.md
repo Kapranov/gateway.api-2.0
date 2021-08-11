@@ -4,6 +4,10 @@
 bash> mix phx.new msg_gateway --no-webpack --no-ecto --no-html --no-gettext --no-dashboard
 ```
 
+```
+bash> elixir --logger-sasl-reports true -S mix test
+```
+
 # Attention need Check it out forced their way and will fixed
 
 ```

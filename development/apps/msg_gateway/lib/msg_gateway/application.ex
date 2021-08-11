@@ -31,10 +31,14 @@ defmodule MsgGateway.Application do
 
     children = [
       %{
-         id: MsgGatewayWeb.Endpoint,
+         id: RedixSupervisor,
          type: :supervisor,
          start: {Supervisor, :start_link, [children_redix, [strategy: :one_for_one] ]}
        },
+      %{
+        id: MsgGatewayWeb.Endpoint,
+        start: {MsgGatewayWeb.Endpoint, :start_link, []}
+      },
       %{
         id: MsgGateway.MqManager,
         start: {MsgGateway.MqManager, :start_link, []}
