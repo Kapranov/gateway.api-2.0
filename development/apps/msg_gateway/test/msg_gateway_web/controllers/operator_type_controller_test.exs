@@ -13,7 +13,7 @@ defmodule MsgGatewayWeb.OperatorTypeControllerTest do
 
     assert result > 0
 
-    operator_info = Enum.find(result, fn(x) -> get_in(x, ["name"]) == @test end)
+    operator_info = Enum.find(result, &(get_in(&1, ["name"]) == @test))
 
     assert operator_info != nil
 
@@ -22,7 +22,7 @@ defmodule MsgGatewayWeb.OperatorTypeControllerTest do
 
     assert new_result > 0
 
-    new_operator_info = Enum.find(new_result, fn(x) -> get_in(x, ["name"]) == @test end)
+    new_operator_info = Enum.find(new_result, &(get_in(&1, ["name"]) == @test))
 
     assert get_in(new_operator_info, ["priority"]) == update_priority_res
 
@@ -32,7 +32,7 @@ defmodule MsgGatewayWeb.OperatorTypeControllerTest do
 
     assert deactivate_result > 0
 
-    operator_info_deactivate = Enum.find(deactivate_result, fn(x) -> get_in(x, ["name"]) == @test end)
+    operator_info_deactivate = Enum.find(deactivate_result, &(get_in(&1, ["name"]) == @test))
 
     assert get_in(operator_info_deactivate, ["active"]) != get_in(new_operator_info, ["active"])
 
@@ -40,7 +40,7 @@ defmodule MsgGatewayWeb.OperatorTypeControllerTest do
 
     is_delete_type =
       select_all_operator_type(conn)
-      |> Enum.find(fn(x) -> get_in(x, ["name"]) == @test end)
+      |> Enum.find(&(get_in(&1, ["name"]) == @test))
     assert  is_delete_type == nil
   end
 

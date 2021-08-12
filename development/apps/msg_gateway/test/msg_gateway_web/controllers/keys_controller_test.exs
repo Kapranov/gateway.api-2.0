@@ -31,21 +31,21 @@ defmodule MsgGatewayWeb.KeysControllerTest do
     deactivate_key(get_in(key, ["id"]), conn)
     updated_key =
       select_all_keys(conn)
-      |> Enum.find(fn(x) -> get_in(key, ["id"]) == get_in(x, ["id"]) end)
+      |> Enum.find(&(get_in(key, ["id"]) == get_in(&1, ["id"])))
 
     assert get_in(updated_key, ["active"]) == false
 
     activate_key(get_in(updated_key, ["id"]), conn)
     activated_key =
       select_all_keys(conn)
-      |> Enum.find(fn(x) -> get_in(updated_key, ["id"]) == get_in(x, ["id"]) end)
+      |> Enum.find(&(get_in(updated_key, ["id"]) == get_in(&1, ["id"])))
 
     assert get_in(activated_key, ["active"]) == true
   end
 
   test "remove all keys", %{conn: conn} do
     select_all_keys(conn)
-    |> Enum.map(fn(x) -> assert remove_key( get_in(x, ["id"]), conn) == "success" end)
+    |> Enum.map(&(assert remove_key( get_in(&1, ["id"]), conn) == "success"))
   end
 
   defp create_key(conn) do
