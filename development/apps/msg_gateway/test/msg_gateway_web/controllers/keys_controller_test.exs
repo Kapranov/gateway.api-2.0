@@ -3,33 +3,43 @@ defmodule MsgGatewayWeb.KeysControllerTest do
 
   test "create auth key", %{conn: conn} do
     assert create_key(conn) == "success"
+
     keys = select_all_keys(conn)
+
     assert length(keys) > 0
   end
 
   test "select keys", %{conn: conn} do
     assert create_key(conn) == "success"
+
     keys = select_all_keys(conn)
+
     assert length(keys) > 0
   end
 
   test "activate and deactivate key", %{conn: conn} do
     assert create_key(conn) == "success"
+
     keys = select_all_keys(conn)
+
     assert length(keys) > 0
+
     [key | _] = keys
+
     assert get_in(key, ["active"]) == true
 
     deactivate_key(get_in(key, ["id"]), conn)
     updated_key =
       select_all_keys(conn)
       |> Enum.find(fn(x) -> get_in(key, ["id"]) == get_in(x, ["id"]) end)
+
     assert get_in(updated_key, ["active"]) == false
 
     activate_key(get_in(updated_key, ["id"]), conn)
     activated_key =
       select_all_keys(conn)
       |> Enum.find(fn(x) -> get_in(updated_key, ["id"]) == get_in(x, ["id"]) end)
+
     assert get_in(activated_key, ["active"]) == true
   end
 
