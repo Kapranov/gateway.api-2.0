@@ -60,7 +60,7 @@ defmodule MsgGatewayWeb.MessageController do
           params: any(),
           result: result()
   def queue_size(conn, _resource) do
-    with {:ok, queue_size, datetime} = GenServer.call(MessagesGateway.MqManager, :queue_size)
+    with {:ok, queue_size, datetime} = GenServer.call(MsgGateway.MqManager, :queue_size)
       do
       render(conn, "queue_size.json", %{queue_size: queue_size, date_time: datetime})
     end
