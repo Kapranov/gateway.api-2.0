@@ -17,54 +17,62 @@ config :core, Core.Repo,
   username: "postgres"
 
 config :msg_router, MsgRouter.MqManager,
-  mq_modul: MsgGateway.MqManager,
+  mq_exchange: "message_exchange",
   mq_host: "localhost",
+  mq_modul: MsgGateway.MqManager,
   mq_port: "5672",
-  mq_queue:  "message_queue",
-  mq_exchange: "message_exchange"
+  mq_queue:  "message_queue"
 
 config :msg_router, MsgRouter.RedisManager,
-  host: "localhost",
   database: "1",
+  host: "localhost",
   password: nil,
-  port: "6379",
-  pool_size: "5"
-
-#config :msg_gateway, MsgGatewayWeb.Endpoint,
-#  check_origin: false,
-#  code_reloader: true,
-#  debug_errors: true,
-#  http: [port: 4000],
-#  render_errors: [view: EView.Views.PhoenixError, accepts: ~w(json)],
-#  watchers: []
+  pool_size: "5",
+  port: "6379"
 
 config :msg_gateway, MsgGatewayWeb.Endpoint,
-  http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
   check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  http: [port: 4000],
   watchers: []
 
 config :msg_gateway, MsgGateway.MqManager,
-  mq_modul: MsgGateway.MqManager,
+  mq_exchange: "message_exchange",
   mq_host: "127.0.0.1",
+  mq_modul: MsgGateway.MqManager,
   mq_port: "5672",
-  mq_queue:  "message_queue",
-  mq_exchange: "message_exchange"
+  mq_queue:  "message_queue"
 
 config :msg_gateway, MsgGateway.RedisManager,
-  host: "0.0.0.0",
-  port: 6379,
-  password: nil,
   database: nil,
-  pool_size: "5"
+  host: "0.0.0.0",
+  password: nil,
+  pool_size: "5",
+  port: 6379
 
 config :msg_gateway, MsgGatewayWeb.KeysController,
   dets_file_name: :mydata_file
 
 config :sms_router, SmsRouter.RedisManager,
-  host: "127.0.0.1",
   database: "1",
+  host: "127.0.0.1",
   password: nil,
-  port: "6379",
-  pool_size: "5"
+  pool_size: "5",
+  port: "6379"
+
+config :viber_protocol,
+  auth_token: "4933484972a7d4e7-fc167580a909f0c6-d93108225af8ea6a"
+
+config :viber_protocol,  ViberProtocol.RedisManager,
+  database: "1",
+  host: "127.0.0.1",
+  password: nil,
+  pool_size: "5",
+  port: "6379"
+
+config :viber_protocol,
+  callback_port: "6012"
+
+config :viber_protocol,
+  viber_endpoint: ViberEndpoint

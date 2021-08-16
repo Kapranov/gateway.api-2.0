@@ -32,59 +32,72 @@ else
 
   config :msg_router, MsgRouter.RedisManager,
     database: "${REDIS_NAME}",
-    password: System.get_env("REDIS_PASSWORD"),
     host: "${REDIS_HOST}",
-    port: "${REDIS_PORT}",
-    pool_size: "${REDIS_POOL_SIZE}"
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
 
   config :msg_router,  MsgRouter.MqManager,
-    mq_modul: MsgGateway.MqManager,
+    mq_exchange: "${MQ_EXCHANGE}",
     mq_host:  "${MQ_HOST}",
+    mq_modul: MsgGateway.MqManager,
     mq_port:  "${MQ_PORT}",
-    resend_timeout: "{$MQ_RESEND_TIMEOUT}",
     mq_queue:  "${MQ_QUEUE}",
-    mq_exchange: "${MQ_EXCHANGE}"
+    resend_timeout: "{$MQ_RESEND_TIMEOUT}"
 
   config :msg_gateway, MsgGatewayWeb.Endpoint,
-    load_from_system_env: true,
+    cache_static_manifest: "priv/static/cache_manifest.json",
+    code_reloader: false,
+    debug_errors: false,
     http: [
       port: String.to_integer(System.get_env("PORT") || "4000"),
       transport_options: [socket_opts: [:inet6]]
     ],
+    load_from_system_env: true,
+    root: ".",
     secret_key_base: secret_key_base, 
+    server: true,
     url: [
       host: {:system, "HOST", "localhost"},
       port: {:system, "PORT", "80"}
-    ],
-    debug_errors: false,
-    code_reloader: false,
-    cache_static_manifest: "priv/static/cache_manifest.json",
-    server: true,
-    root: "."
+    ]
 
   config :msg_gateway, MsgGateway.RedisManager,
     database: "${REDIS_NAME}",
-    password: System.get_env("REDIS_PASSWORD"),
     host: "${REDIS_HOST}",
-    port: "${REDIS_PORT}",
-    pool_size: "${REDIS_POOL_SIZE}"
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
 
   config :msg_gateway, MsgGateway.MqManager,
-    mq_modul: MsgGateway.MqManager,
+    mq_exchange: "${MQ_EXCHANGE}",
     mq_host:  "${MQ_HOST}",
+    mq_modul: MsgGateway.MqManager,
     mq_port:  "${MQ_PORT}",
-    resend_timeout: "${MQ_RESEND_TIMEOUT}",
     mq_queue:  "${MQ_QUEUE}",
-    mq_exchange: "${MQ_EXCHANGE}"
+    resend_timeout: "${MQ_RESEND_TIMEOUT}"
 
   config :msg_gateway, MsgGatewayWeb.KeysController,
     dets_file_name: :mydata_file
 
   config :sms_router, SmsRouter.RedisManager,
     database: "${REDIS_NAME}",
-    password: System.get_env("REDIS_PASSWORD"),
     host: "${REDIS_HOST}",
-    port: "${REDIS_PORT}",
-    pool_size: "${REDIS_POOL_SIZE}"
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
+
+  config :viber_protocol, ViberProtocol.RedisManager,
+    database: "${REDIS_NAME}",
+    host: "${REDIS_HOST}",
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
+
+  config :viber_protocol,
+    callback_port: "${VIBER_CALLBACK_PORT}"
+
+  config :viber_protocol,
+    viber_endpoint: ViberEndpoint
   """)
 end

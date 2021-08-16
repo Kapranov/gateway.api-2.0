@@ -28,45 +28,61 @@ else
     username: "your_login"
 
   config :msg_router, MsgRouter.MqManager,
-    mq_modul: MqManagerTest,
+    mq_exchange: "message_exchange",
     mq_host: "your_hostname",
+    mq_modul: MqManagerTest,
     mq_port: "5672",
-    mq_queue:  "message_queue",
-    mq_exchange: "message_exchange"
+    mq_queue:  "message_queue"
 
   config :msg_router, MsgRouter.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :msg_gateway, MsgGatewayWeb.Endpoint,
     http: [port: 4001],
     server: false
 
   config :msg_gateway, MsgGateway.MqManager,
-    mq_modul: MqManagerTest,
+    mq_exchange: "message_exchange",
     mq_host: "your_hostname",
+    mq_modul: MqManagerTest,
     mq_port: "5672",
-    mq_queue:  "message_queue",
-    mq_exchange: "message_exchange"
+    mq_queue:  "message_queue"
 
   config :msg_gateway, MsgGateway.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :msg_gateway, MsgGatewayWeb.KeysController,
     dets_file_name: :mydata_file_test
 
   config :sms_router, SmsRouter.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
+
+  config :viber_protocol,
+    auth_token: "viber_auth_token"
+
+  config :viber_protocol,  ViberProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
+
+  config :viber_protocol,
+    callback_port: "6012"
+
+  config :viber_protocol,
+    viber_endpoint: TestEndpoint
   """)
 end

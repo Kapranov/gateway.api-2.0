@@ -67,5 +67,21 @@ else
     password: "your_password",
     port: "6379",
     pool_size: "5"
+
+  config :viber_protocol,
+    auth_token: "viber_auth_token"
+
+  config :viber_protocol,  ViberProtocol.RedisManager,
+    host: "your_hostname",
+    database: "your_name_db",
+    password: "your_password",
+    port: "6379",
+    pool_size: "5"
+
+  config :viber_protocol,
+    callback_port: "6012"
+
+  config :viber_protocol,
+    viber_endpoint: ViberEndpoint
   """)
 end
