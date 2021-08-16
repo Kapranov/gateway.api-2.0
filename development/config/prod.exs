@@ -99,5 +99,17 @@ else
 
   config :viber_protocol,
     viber_endpoint: ViberEndpoint
+
+  config :telegram_protocol, TelegramProtocol.RedisManager,
+    database: "${REDIS_NAME}",
+    host: "${REDIS_HOST}",
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
+
+  config :telegram_protocol, TelegramProtocol,
+    telegram_driver: TDLib
+
+  config :tdlib, backend_binary: "/msg_gateway_api/lib/tdlib-0.0.2/priv/tdlib-json-cli"
   """)
 end

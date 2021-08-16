@@ -71,3 +71,13 @@ config :viber_protocol,
 
 config :viber_protocol,
   viber_endpoint: TestEndpoint
+
+config :telegram_protocol,  TelegramProtocol.RedisManager,
+  database: "2",
+  host: "127.0.0.1",
+  password: nil,
+  pool_size: "5",
+  port: "6379"
+
+config :telegram_protocol, TelegramProtocol,
+  telegram_driver: TDLibTest

@@ -84,5 +84,15 @@ else
 
   config :viber_protocol,
     viber_endpoint: TestEndpoint
+
+  config :telegram_protocol,  TelegramProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
+
+  config :telegram_protocol, TelegramProtocol,
+    telegram_driver: TDLibTest
   """)
 end
