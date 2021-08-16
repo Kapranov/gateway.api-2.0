@@ -13,3 +13,5 @@ case :gen_tcp.connect('localhost', 6379, []) do
   {:error, reason} ->
     Mix.raise("Cannot connect to Redis (http://localhost:6379): #{:inet.format_error(reason)}")
 end
+
+Application.ensure_started(:amqp) 
