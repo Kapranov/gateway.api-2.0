@@ -60,5 +60,12 @@ else
 
   config :msg_gateway, MsgGatewayWeb.KeysController,
     dets_file_name: :mydata_file
+
+  config :sms_router, SmsRouter.RedisManager,
+    host: "your_hostname",
+    database: "your_name_db",
+    password: "your_password",
+    port: "6379",
+    pool_size: "5"
   """)
 end

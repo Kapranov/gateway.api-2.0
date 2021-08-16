@@ -48,3 +48,10 @@ config :logger, level: :warn
 
 config :msg_gateway, MsgGatewayWeb.KeysController,
   dets_file_name: :mydata_file_test
+
+config :sms_router, SmsRouter.RedisManager,
+  host: "localhost",
+  database: "2",
+  password: nil,
+  port: "6379",
+  pool_size: "5"
