@@ -183,7 +183,7 @@ defmodule TelegramProtocol do
     RedisManager.set(message_id, message_status_info)
     {:ok, app_name} = :application.get_application(@name)
     RedisManager.get(Atom.to_string(app_name))
-    apply(:'Elixir.MessagesRouter', :send_message, [%{message_id: message_id}])
+    apply(:'Elixir.MsgRouter', :send_message, [%{message_id: message_id}])
   end
 
   def end_sending_messages(:error, message_id) do
@@ -194,22 +194,22 @@ defmodule TelegramProtocol do
     RedisManager.set(message_id, message_status_info)
     {:ok, app_name} = :application.get_application(@name)
     RedisManager.get(Atom.to_string(app_name))
-    apply(:'Elixir.MessagesRouter', :send_message, [%{message_id: message_id}])
+    apply(:'Elixir.MsgRouter', :send_message, [%{message_id: message_id}])
   end
 
-  defp check_config({:error, _}) do
+  def check_config({:error, _}) do
     {:ok, app_name} = :application.get_application(@name)
     RedisManager.set(Atom.to_string(app_name), @protocol_config_def)
     start_telegram_lib()
   end
 
-  defp check_config(%{api_id: api_id, api_hash: api_hash, phone: phone, session_name: session_name})
+  def check_config(%{api_id: api_id, api_hash: api_hash, phone: phone, session_name: session_name})
        when api_id == "" and api_hash == "" and phone == "" and session_name == ""
     do
     start_telegram_lib()
   end
 
-  defp check_config(protocol_config) do
+  def check_config(protocol_config) do
     check_correct_configs(Map.keys(protocol_config) ==  Map.keys(@protocol_config_def), protocol_config)
     config = struct(@tdlib.default_config(), %{api_id: String.to_integer(protocol_config.api_id), api_hash: protocol_config.api_hash})
     {:ok, _pid} = @tdlib.open(String.to_atom(protocol_config.session_name), self(), config)
