@@ -30,7 +30,7 @@ defmodule ViberProtocol.Application do
         )
       end
 
-    children = [
+    children_viber = [
       %{
         id: ViberProtocol.RedixSupervisor,
         type: :supervisor,
@@ -39,11 +39,11 @@ defmodule ViberProtocol.Application do
       %{
         id: ViberProtocol,
         start: {ViberProtocol, :start_link, []}
-       },
-      %{
-        id: Plug.Cowboy,
-        start: {Plug.Cowboy, :start_link, [scheme: :http, plug: ViberCallback, options: [port: callback_port]]}
-      }
+       }
+    ]
+
+    children = children_viber ++ [
+      Plug.Cowboy.child_spec(scheme: :http, plug: ViberCallback, options: [port: callback_port])
     ]
 
     opts = [strategy: :one_for_one, name: ViberProtocol.Supervisor]
