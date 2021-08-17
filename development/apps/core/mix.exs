@@ -48,7 +48,6 @@ defmodule Core.MixProject do
       {:mox, "~> 1.0", only: :test},
       {:phoenix_ecto, "~> 4.3"},
       {:plug, "~> 1.12"},
-      {:poison, "~> 5.0"},
       {:postgrex, "~> 0.15"},
       {:scrivener_ecto, "~> 2.7"},
       {:timex, "~> 3.1"}

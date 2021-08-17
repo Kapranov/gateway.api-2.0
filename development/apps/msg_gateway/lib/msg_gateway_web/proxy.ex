@@ -9,7 +9,7 @@ defmodule MsgGatewayWeb.Proxy do
     resp =
       response
       |> get_proxy_resp_data()
-      |> Poison.encode!()
+      |> Jason.encode!()
 
     paging =
       response

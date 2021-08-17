@@ -42,7 +42,7 @@ defmodule MsgGateway.MixProject do
       {:mox, "~> 1.0", only: :test},
       {:phoenix, "~> 1.5.9"},
       {:plug_cowboy, "~> 2.5"},
-      {:plug_logger_json, path: "src/plug_logger_json"},
+      {:plug_logger_json, "~> 0.7"},
       {:redix, "~> 1.1"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"}
