@@ -35,7 +35,7 @@ defmodule ViberPlug do
   defp response({:reply, data}, conn) when is_map(data) do
     conn
     |> put_resp_header("content-type", "application/json")
-    |> send_resp(200, Poison.encode!(data))
+    |> send_resp(200, Jason.encode!(data))
   end
 
   defp response(:noreply, conn) do
