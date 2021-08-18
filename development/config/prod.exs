@@ -133,5 +133,12 @@ else
     password: System.get_env("REDIS_PASSWORD"),
     pool_size: "${REDIS_POOL_SIZE}",
     port: "${REDIS_PORT}"
+
+  config :vodafon_sms_protocol, VodafonSmsProtocol.RedisManager,
+    database: "${REDIS_NAME}",
+    host: "${REDIS_HOST}",
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
   """)
 end

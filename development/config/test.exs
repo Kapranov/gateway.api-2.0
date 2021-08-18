@@ -116,5 +116,12 @@ else
     password: "your_password",
     pool_size: "5",
     port: "6379"
+
+  config :vodafon_sms_protocol,  VodafonSmsProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
   """)
 end

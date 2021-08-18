@@ -29,6 +29,7 @@ defmodule SmtpProtocol.MixProject do
     [
       {:bamboo_smtp, "~> 4.1"},
       {:excoveralls, "~> 0.14", only: :test},
+      {:jason, "~> 1.2"},
       {:redix, "~> 1.1"}
     ]
   end
