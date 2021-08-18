@@ -1,0 +1,10 @@
+/_build/
+/cover/
+/deps/
+/doc/
+/.fetch
+/tmp/
+
+erl_crash.dump
+*.ez
+lifecell_sms_protocol-*.tar
