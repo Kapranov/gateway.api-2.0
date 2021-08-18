@@ -20,7 +20,7 @@ defmodule TelegramProtocol.MixProject do
 
   def application do
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :jason],
       mod: {TelegramProtocol.Application, []}
     ]
   end
