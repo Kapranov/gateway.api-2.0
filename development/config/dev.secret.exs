@@ -115,3 +115,21 @@ config :vodafon_sms_protocol,  VodafonSmsProtocol.RedisManager,
   password: nil,
   pool_size: "5",
   port: "6379"
+
+config :lifecell_sms_protocol,
+  login: nil,
+  password: nil,
+  sms_send_url: "http://bulk.bs-group.com.ua/clients.php"
+
+config :lifecell_sms_protocol,  LifecellSmsProtocol.RedisManager,
+  database: "1",
+  host: "127.0.0.1",
+  password: nil,
+  pool_size: "5",
+  port: "6379"
+
+config :lifecell_sms_protocol,
+  callback_port: "6016"
+
+config :lifecell_sms_protocol,
+  endpoint: EndpointManager

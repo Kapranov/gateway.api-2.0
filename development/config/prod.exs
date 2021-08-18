@@ -140,5 +140,23 @@ else
     password: System.get_env("REDIS_PASSWORD"),
     pool_size: "${REDIS_POOL_SIZE}",
     port: "${REDIS_PORT}"
+
+  config :lifecell_sms_protocol,
+    login: "${LIFECELL_SMS_LOGIN}",
+    password: "${LIFECELL_SMS_PASSWORD}",
+    sms_send_url: "${LIFECELL_SMS_SEND_URL}"
+
+  config :lifecell_sms_protocol, LifecellSmsProtocol.RedisManager,
+    database: "${REDIS_NAME}",
+    host: "${REDIS_HOST}",
+    password: System.get_env("REDIS_PASSWORD"),
+    pool_size: "${REDIS_POOL_SIZE}",
+    port: "${REDIS_PORT}"
+
+  config :lifecell_sms_protocol,
+    callback_port: "${LIFECELL_CALLBACK_PORT}"
+
+  config :lifecell_sms_protocol,
+    endpoint: EndpointManager
   """)
 end

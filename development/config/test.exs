@@ -123,5 +123,23 @@ else
     password: "your_password",
     pool_size: "5",
     port: "6379"
+
+  config :lifecell_sms_protocol,
+    login: "lifecell_sms_login",
+    password: "lifecell_sms_password",
+    sms_send_url: "lifecell_sms_send_url"
+
+  config :lifecell_sms_protocol,  LifecellSmsProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
+
+  config :lifecell_sms_protocol,
+    callback_port: "lifecell_callback_port"
+
+  config :lifecell_sms_protocol,
+    endpoint: EndpointManagerTest
   """)
 end
