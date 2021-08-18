@@ -86,3 +86,25 @@ config :telegram_protocol,  TelegramProtocol.RedisManager,
 
 config :telegram_protocol, TelegramProtocol,
   telegram_driver: TDLib
+
+config :smtp_protocol, SmtpProtocol.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  allowed_tls_versions: [:tlsv1, :"tlsv1.1", :"tlsv1.2"],
+  auth: :if_available,
+  hostname: "skywell.software",
+  no_mx_lookups: false,
+  password: "Gembird1nser%",
+  port: 587,
+  retries: 1,
+  server: "smtp.office365.com",
+  smtp_mailer: SmtpProtocol.Mailer,
+  ssl: false,
+  tls: :if_available,
+  username: "r.moroz@skywell.software"
+
+config :smtp_protocol, SmtpProtocol.RedisManager,
+  database: "1",
+  host: "127.0.0.1",
+  password: nil,
+  pool_size: "5",
+  port: "6379"

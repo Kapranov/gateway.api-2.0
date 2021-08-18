@@ -28,7 +28,7 @@ defmodule TelegramProtocol.MixProject do
   defp deps do
     [
       {:core, in_umbrella: true},
-      {:excoveralls, "~> 0.14.2"},
+      {:excoveralls, "~> 0.14", only: :test},
       {:httpoison, "~> 1.8"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},

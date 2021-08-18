@@ -94,5 +94,27 @@ else
 
   config :telegram_protocol, TelegramProtocol,
     telegram_driver: TDLibTest
+
+  config :smtp_protocol, SmtpProtocol.Mailer,
+    adapter: Bamboo.SMTPAdapter,
+    allowed_tls_versions: [],
+    auth: :if_available,
+    hostname: "your_smtp_hostname",
+    no_mx_lookups: false,
+    password: "your_smtp_password",
+    port: "your_smtp_port",
+    retries: 1,
+    server: "your_smtp_server",
+    smtp_mailer: TestMailer,
+    ssl: false,
+    tls: :if_available,
+    username: "your_smtp_username"
+
+  config :smtp_protocol, SmtpProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
   """)
 end

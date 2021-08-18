@@ -23,18 +23,18 @@ else
     username: "your_login"
 
   config :msg_router, MsgRouter.MqManager,
-    mq_modul: MsgGateway.MqManager,
+    mq_exchange: "message_exchange",
     mq_host: "your_hostname",
+    mq_modul: MsgGateway.MqManager,
     mq_port: "5672",
-    mq_queue:  "message_queue",
-    mq_exchange: "message_exchange"
+    mq_queue:  "message_queue"
 
   config :msg_router, MsgRouter.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :msg_gateway, MsgGatewayWeb.Endpoint,
     check_origin: false,
@@ -45,38 +45,38 @@ else
     watchers: []
 
   config :msg_gateway, MsgGateway.MqManager,
-    mq_modul: MsgGateway.MqManager,
+    mq_exchange: "message_exchange",
     mq_host: "your_hostname",
+    mq_modul: MsgGateway.MqManager,
     mq_port: "5672",
-    mq_queue:  "message_queue",
-    mq_exchange: "message_exchange"
+    mq_queue:  "message_queue"
 
   config :msg_gateway, MsgGateway.RedisManager,
-    host: "your_hostname",
-    port: 6379,
-    password: "your_password",
     database: "your_name_db",
-    pool_size: "5"
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: 6379
 
   config :msg_gateway, MsgGatewayWeb.KeysController,
     dets_file_name: :mydata_file
 
   config :sms_router, SmsRouter.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :viber_protocol,
     auth_token: "viber_auth_token"
 
   config :viber_protocol,  ViberProtocol.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :viber_protocol,
     callback_port: "6012"
@@ -85,13 +85,35 @@ else
     viber_endpoint: ViberEndpoint
 
   config :telegram_protocol,  TelegramProtocol.RedisManager,
-    host: "your_hostname",
     database: "your_name_db",
+    host: "your_hostname",
     password: "your_password",
-    port: "6379",
-    pool_size: "5"
+    pool_size: "5",
+    port: "6379"
 
   config :telegram_protocol, TelegramProtocol,
     telegram_driver: TDLib
+
+  config :smtp_protocol, SmtpProtocol.Mailer,
+    adapter: Bamboo.SMTPAdapter,
+    allowed_tls_versions: [],
+    auth: :if_available,
+    hostname: "your_smtp_hostname",
+    no_mx_lookups: false,
+    password: "your_smtp_password",
+    port: "your_smtp_port",
+    retries: 1,
+    server: "your_smtp_server",
+    smtp_mailer: SmtpProtocol.Mailer,
+    ssl: false,
+    tls: :if_available,
+    username: "your_smtp_username"
+
+  config :smtp_protocol, SmtpProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
   """)
 end
