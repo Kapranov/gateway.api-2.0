@@ -29,6 +29,7 @@ defmodule LifecellIpTelephonyProtocol.MixProject do
       {:excoveralls, "~> 0.14", only: :test},
       {:httpoison, "~> 1.8"},
       {:jason, "~> 1.2"},
+      {:lifecell_sms_protocol, in_umbrella: true},
       {:redix, "~> 1.1"}
     ]
   end
