@@ -11,7 +11,10 @@ defmodule LifecellSmsProtocol.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
+      deps: deps(),
+      elixirc_paths: elixirc_paths(Mix.env)
     ]
   end
 
@@ -23,6 +26,16 @@ defmodule LifecellSmsProtocol.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:excoveralls, "~> 0.14", only: :test},
+      {:httpoison, "~> 1.8"},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.5"},
+      {:redix, "~> 1.1"},
+      {:sweet_xml, "~> 0.7"}
+    ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_),     do: ["lib"]
 end

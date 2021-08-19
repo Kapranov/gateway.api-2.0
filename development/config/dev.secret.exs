@@ -132,4 +132,4 @@ config :lifecell_sms_protocol,
   callback_port: "6016"
 
 config :lifecell_sms_protocol,
-  endpoint: EndpointManager
+  endpoint: LifecellSmsProtocol.EndpointManager

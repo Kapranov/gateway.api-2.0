@@ -1,12 +1,11 @@
 defmodule VodafonSmsProtocol do
-  @moduledoc  false
+  @moduledoc false
 
   use GenServer
 
   alias VodafonSmsProtocol.RedisManager
 
   @name __MODULE__
-
   @protocol_config_def %{
     code: "",
     login: "",
@@ -25,21 +24,27 @@ defmodule VodafonSmsProtocol do
     |> check_config(app_name)
 
     GenServer.cast(MgLogger.Server, {:log, @name, %{"#{@name}" => "started"}})
-
     {:ok, []}
+  end
+
+  def send_message(message_info), do: end_sending_messages(message_info)
+
+  def wait_delivery_report(message_id) do
+    fn(pdu) ->
+      SMPPEX.Pdu.command_name(pdu) == :deliver_sm and
+      SMPPEX.Pdu.field(pdu, :receipted_message_id) == message_id
+    end
   end
 
   defp check_config({:error, _}, app_name), do: RedisManager.set(Atom.to_string(app_name), @protocol_config_def)
   defp check_config(protocol_config, app_name) do
-    case Map.keys(protocol_config) == Map.keys(@protocol_config_def) do
+    case Map.keys(protocol_config) ==  Map.keys(@protocol_config_def) do
       true -> :ok
       _->
         config = for {k, v} <- @protocol_config_def, into: %{}, do: {k, Map.get(protocol_config, k, v)}
         RedisManager.set(Atom.to_string(app_name), config)
     end
   end
-
-  def send_message(message_info), do: end_sending_messages(message_info)
 
   defp end_sending_messages(message_info) do
     :io.format("Vodafon SMS error sending message")

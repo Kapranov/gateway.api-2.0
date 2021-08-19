@@ -140,6 +140,6 @@ else
     callback_port: "lifecell_callback_port"
 
   config :lifecell_sms_protocol,
-    endpoint: EndpointManagerTest
+    endpoint: LifecellSmsProtocol.EndpointManager
   """)
 end
