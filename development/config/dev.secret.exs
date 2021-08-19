@@ -133,3 +133,20 @@ config :lifecell_sms_protocol,
 
 config :lifecell_sms_protocol,
   endpoint: LifecellSmsProtocol.EndpointManager
+
+config :ex_ami, servers: [
+  {:asterisk, [
+    {:connection, {ExAmi.TcpConnection, [
+      {:host, "127.0.0.1"}, {:port, 5038}
+    ]}},
+    {:username, "elixirconf"},
+    {:secret, "elixirconf"}
+  ]}
+]
+
+config :lifecell_ip_telephony_protocol, LifecellIpTelephonyProtocol.RedisManager,
+  database: nil,
+  host: "0.0.0.0",
+  password: nil,
+  pool_size: "5",
+  port: "6379"

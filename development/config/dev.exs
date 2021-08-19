@@ -140,5 +140,23 @@ else
 
   config :lifecell_sms_protocol,
     endpoint: LifecellSmsProtocol.EndpointManager
+
+  config :ex_ami, servers: [
+    {:asterisk, [
+      {:connection, {ExAmi.TcpConnection, [
+        {:host, "asterisk_host"},
+        {:port, "asterisk_port" }
+      ]}},
+      {:username, "asterisk_username"},
+      {:secret, "$asterisk_password"}
+    ]}
+  ]
+
+  config :lifecell_ip_telephony_protocol, LifecellIpTelephonyProtocol.RedisManager,
+    database: "your_name_db",
+    host: "your_hostname",
+    password: "your_password",
+    pool_size: "5",
+    port: "6379"
   """)
 end

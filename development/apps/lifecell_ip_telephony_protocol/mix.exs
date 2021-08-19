@@ -11,6 +11,8 @@ defmodule LifecellIpTelephonyProtocol.MixProject do
       lockfile: "../../mix.lock",
       elixir: "~> 1.12",
       start_permanent: Mix.env() == :prod,
+      test_coverage: [tool: ExCoveralls],
+      preferred_cli_env: [coveralls: :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
       deps: deps()
     ]
   end
@@ -23,6 +25,11 @@ defmodule LifecellIpTelephonyProtocol.MixProject do
   end
 
   defp deps do
-    []
+    [
+      {:excoveralls, "~> 0.14", only: :test},
+      {:httpoison, "~> 1.8"},
+      {:jason, "~> 1.2"},
+      {:redix, "~> 1.1"}
+    ]
   end
 end
