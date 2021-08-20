@@ -8,12 +8,14 @@ bash> mix compile
 bash> mix ecto.create
 bash> mix ecto.mirate
 bash> mix run apps//core/priv/repo/seeds.ex
+bash> ./run.sh
 ```
 
 ```
 bash> MIX_ENV=test mix compile
 bash> MIX_ENV=test mix ecto.create
 bash> MIX_ENV=test mix ecto.mirate
+bash> MIX_ENV=test iex -S mix
 bash> mix test
 ```
 
