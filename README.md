@@ -47,7 +47,7 @@ bash> mix compile
 bash> mix ecto.drop
 bash> mix ecto.create
 bash> mix ecto.mirate
-bash> mix run apps//core/priv/repo/seeds.ex
+bash> mix run apps/core/priv/repo/seeds.exs
 bash> ./run.sh
 ```
 
@@ -59,7 +59,17 @@ bash> MIX_ENV=test mix compile
 bash> MIX_ENV=test mix ecto.drop
 bash> MIX_ENV=test mix ecto.create
 bash> MIX_ENV=test mix ecto.mirate
-bash> MIX_ENV=test iex -S mix
+bash> mix test apps/core/test/*
+bash> mix test apps/lifecell_ip_telephony_protocol/test/*
+bash> mix test apps/lifecell_sms_protocol/test/*
+bash> mix test apps/mg_logger/test/*
+bash> mix test apps/msg_gateway/test/*
+bash> mix test apps/msg_router/test/*
+bash> mix test apps/sms_router/test/*
+bash> mix test apps/smtp_protocol/test/*
+bash> mix test apps/telegram_protocol/test/*
+bash> mix test apps/viber_protocol/test/*
+bash> mix test apps/vodafon_sms_protocol/test/*
 bash> mix test
 ```
 
