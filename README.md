@@ -41,8 +41,6 @@ bash> sudo apt-get -y install gperf
 ```
 bash> cd gateway.api-2.0/development
 bash> mix deps.get
-bash> mix deps.update -all
-bash> mix deps.get
 bash> mix compile
 bash> mix ecto.drop
 bash> mix ecto.create

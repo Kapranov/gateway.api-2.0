@@ -124,6 +124,4 @@ defmodule MsgGatewayWeb.MessageControllerTest do
   end
 end
 
-defmodule MqManagerTest do
-  def publish(_), do: :ok
-end
+defmodule MqManagerTest, do: def publish(_), do: :ok
