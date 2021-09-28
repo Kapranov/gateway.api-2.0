@@ -18,6 +18,6 @@ defmodule Core.Repo.Migrations.CreatePatternNotifications do
   end
 
   def down do
-    drop table(:contacts)
+    drop table(:pattern_notifications)
   end
 end
