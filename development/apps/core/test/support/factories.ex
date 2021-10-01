@@ -7,6 +7,7 @@ defmodule Core.Factory do
 
   alias Core.{
     Contacts,
+    Notifications.PatternNotification,
     OperatorTypes,
     Operators
   }
@@ -46,6 +47,20 @@ defmodule Core.Factory do
       operator: build(:operator),
       phone_number: Hy.number(),
       viber_id: UUID.v4()
+    }
+  end
+
+  @spec pattern_notification_factory() :: PatternNotification.t()
+  def pattern_notification_factory do
+    %PatternNotification{
+      action_type: Lorem.sentence(),
+      full_text: Lorem.sentence(),
+      need_auth: random_boolean(),
+      remove_previous: random_boolean(),
+      short_text: Lorem.sentence(),
+      template_type: Lorem.sentence(),
+      time_to_live_in_sec: random_integer(),
+      title: Lorem.sentence()
     }
   end
 
