@@ -44,7 +44,7 @@ defmodule Core.Notifications.RegisterNotification do
   schema "register_notifications" do
     field :recipients, :map, default: Map.new(), null: false
 
-    belongs_to :pattern_notification, PatternNotification, foreign_key: :pattern_notification_id, type: :binary_id
+    belongs_to :pattern_notifications, PatternNotification, foreign_key: :pattern_notification_id, type: :binary_id
 
     timestamps()
   end

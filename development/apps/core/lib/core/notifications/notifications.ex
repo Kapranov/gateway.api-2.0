@@ -71,6 +71,7 @@ defmodule Core.Notifications do
           result: [RegisterNotification.t()] | [] | {:error, Ecto.Changeset.t()}
   def list_register_notifications() do
     Repo.all(RegisterNotification)
+    |> Repo.preload([:pattern_notifications])
   end
 
   @doc """
@@ -90,7 +91,10 @@ defmodule Core.Notifications do
   """
   @spec get_register_notification!(String.t()) :: result when
           result: RegisterNotification.t() | [] | {:error, Ecto.Changeset.t()}
-  def get_register_notification!(id), do: Repo.get!(RegisterNotification, id)
+  def get_register_notification!(id) do
+    Repo.get!(RegisterNotification, id)
+    |> Repo.preload([:pattern_notifications])
+  end
 
   @doc """
   Delete RegisterNotification by id

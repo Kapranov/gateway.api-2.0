@@ -28,15 +28,20 @@ defmodule Core.Notifications.RegisterNotificationTest do
       pattern_notification = insert(:pattern_notification)
       attrs = Map.merge(@valid_attrs, %{pattern_notification_id: pattern_notification.id})
       assert {:ok, %RegisterNotification{} = created} = Notifications.create_register_notification(attrs)
-      assert created.pattern_notification_id                   == pattern_notification.id
-      assert created.pattern_notifications.action_type         == "some text"
-      assert created.pattern_notifications.full_text           == "some text"
-      assert created.pattern_notifications.need_auth           == nil
-      assert created.pattern_notifications.remove_previous     == nil
-      assert created.pattern_notifications.short_text          == nil
-      assert created.pattern_notifications.template_type       == "some text"
-      assert created.pattern_notifications.time_to_live_in_sec == nil
-      assert created.pattern_notifications.title               == "some text"
+
+      loaded =
+        created
+        |> Repo.preload([:pattern_notifications])
+
+      assert loaded.pattern_notification_id                   == pattern_notification.id
+      assert loaded.pattern_notifications.action_type         == pattern_notification.action_type
+      assert loaded.pattern_notifications.full_text           == pattern_notification.full_text
+      assert loaded.pattern_notifications.need_auth           == pattern_notification.need_auth
+      assert loaded.pattern_notifications.remove_previous     == pattern_notification.remove_previous
+      assert loaded.pattern_notifications.short_text          == pattern_notification.short_text
+      assert loaded.pattern_notifications.template_type       == pattern_notification.template_type
+      assert loaded.pattern_notifications.time_to_live_in_sec == pattern_notification.time_to_live_in_sec
+      assert loaded.pattern_notifications.title               == pattern_notification.title
     end
 
     test "create_register_notification/1 with invalid data returns error changeset" do
@@ -44,4 +49,3 @@ defmodule Core.Notifications.RegisterNotificationTest do
     end
   end
 end
-
