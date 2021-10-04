@@ -69,7 +69,14 @@ defmodule Core.Factory do
   def register_notification_factory do
     %RegisterNotification{
       pattern_notifications: build(:pattern_notification),
-      recipients: Map.new
+      recipients: %{
+        parameters: %{
+          key: Lorem.word(),
+          value: Lorem.word()
+        },
+        resource_id: FlakeId.get(),
+        rnokpp: Lorem.sentence()
+      }
     }
   end
 
