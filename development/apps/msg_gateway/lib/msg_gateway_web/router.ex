@@ -43,14 +43,14 @@ defmodule MsgGatewayWeb.Router do
       get "/all", KeysController, :get_all
       resources "/", KeysController, except: [:new, :edit, :update, :create]
     end
-  end
 
-  scope "/api/v1", MsgGatewayWeb do
-    post "/notification/template", PatternNotificationController, only: :create
-    post "/notification/distribution/push", RegisterNotificationController, only: :create
-    post "/notification/distribution/push/:id", RegisterNotificationController, only: :delete
-    get "/notification/distribution/push/:id", RegisterNotificationController, only: :show
-    get "/notification/distribution/push/:id/status", RegisterNotificationController, only: :show
+    scope "/v1" do
+      post "/notification/template", PatternNotificationController, :create
+      post "/notification/distribution/push", RegisterNotificationController, :create
+      post "/notification/distribution/push/:id", RegisterNotificationController, :delete
+      get "/notification/distribution/push/:id", RegisterNotificationController, :show
+      get "/notification/distribution/push/:id/status", RegisterNotificationController, :show
+    end
   end
 
   scope "/message", MsgGatewayWeb do

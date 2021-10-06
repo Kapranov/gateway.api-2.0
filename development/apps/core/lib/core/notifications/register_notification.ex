@@ -5,10 +5,7 @@ defmodule Core.Notifications.RegisterNotification do
 
   use Core.Model
 
-  alias Core.{
-    Notifications,
-    Notifications.PatternNotification
-  }
+  alias Core.Notifications.PatternNotification
 
   @type t :: %__MODULE__{
     id: String.t(),
