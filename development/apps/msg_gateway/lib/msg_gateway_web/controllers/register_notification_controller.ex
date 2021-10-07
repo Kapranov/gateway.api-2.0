@@ -7,6 +7,12 @@ defmodule MsgGatewayWeb.RegisterNotificationController do
 
   action_fallback(MsgGatewayWeb.FallbackController)
 
+  def index(conn, _params) do
+    with data <- Notifications.list_register_notifications() do
+      render(conn, "index.json", %{register_notifications: data})
+    end
+  end
+
   def create(conn, %{"resource" => %{
     "pattern_notification_id" => pattern_notification_id,
     "recipients" => %{
@@ -37,15 +43,8 @@ defmodule MsgGatewayWeb.RegisterNotificationController do
   end
 
   def delete(conn, %{"id" => id}) do
-    Notifications.get_register_notification!(id)
-    |> delete_register_notification(id, conn)
-  end
-
-  defp delete_register_notification([], id, conn) do
     with {_, nil} <- Notifications.delete_register_notification(id) do
       render(conn, "delete.json", %{status: "success"})
     end
   end
-
-  defp delete_register_notification(_, _, _), do: {:error, :operators_present}
 end

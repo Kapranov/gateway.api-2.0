@@ -47,7 +47,9 @@ defmodule MsgGatewayWeb.Router do
     scope "/v1" do
       post "/notification/template", PatternNotificationController, :create
       post "/notification/distribution/push", RegisterNotificationController, :create
-      post "/notification/distribution/push/:id", RegisterNotificationController, :delete
+      delete "/notification/distribution/push/:id", RegisterNotificationController, :delete
+      get "/notification/template", PatternNotificationController, :index
+      get "/notification/distribution/push", RegisterNotificationController, :index
       get "/notification/distribution/push/:id", RegisterNotificationController, :show
       get "/notification/distribution/push/:id/status", RegisterNotificationController, :show
     end

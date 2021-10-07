@@ -5,7 +5,7 @@ defmodule Core.Repo.Migrations.CreateRegisterNotifications do
     create table(:register_notifications, primary_key: false) do
       add :id, :uuid, primary_key: true
       add :pattern_notification_id, references(:pattern_notifications, type: :uuid, on_delete: :delete_all), null: true, primary_key: false
-      add :recipients,  :map, null: false, default: Map.new()
+      add :recipients, :map, default: Map.new(), null: false
        
       timestamps()
     end

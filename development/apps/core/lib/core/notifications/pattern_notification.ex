@@ -5,8 +5,6 @@ defmodule Core.Notifications.PatternNotification do
 
   use Core.Model
 
-  alias Core.Notifications
-
   @type t :: %__MODULE__{
     id: String.t(),
     action_type: String.t(),
